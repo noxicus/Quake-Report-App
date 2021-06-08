@@ -56,18 +56,21 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView tv_date = convertView.findViewById(R.id.tv_date);
 
         tv_magnitude.setText(String.valueOf(earthquake.getMagnitude()));
-        String location = earthquake.getLocation();
 
+        // Check if location contains word "of"
+        String location = earthquake.getLocation();
         boolean contains = location.contains("of");
 
         if (contains) {
+            // If does set first part to textview position
             String[] parts = location.split("(?<=of)");
             tv_position.setText(parts[0]);
-
+            // .. set second to textview place
             String trimmed = parts[1].trim();
             tv_place.setText(trimmed);
 
         } else {
+            // If doesn't set following
             tv_position.setText("Near the ");
             tv_place.setText(location);
         }
